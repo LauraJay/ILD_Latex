@@ -1,42 +1,90 @@
 \section{Materials}\label{sec:Materials}
-\todo[inline, color=red]{Laura}
+\todo[inline, color=yellow]{Laura}
+The following sections describe the resources and tools required for the completion of the project. \\ Furthermore, the test images are presented in chapter \ref{sec:testimages}.
+
 
 \subsection{Hardware}\label{sec:Hardware}
-\todo[inline, color=red]{Laura}
+\todo[inline, color=yellow]{Laura}
+During the implementation phase, the application was run on two computers, which are described in the following two sections. Both computers needed to be able to deal with the software components described in section \ref{sec:Software}. An extract from your data sheet is shown in table \ref{tab:Computer1} respectively table \ref{tab:Computer2}.
 
-
-%\subsubsection{Computer}\label{sec:Computer}
-%\todo[inline, color=red]{Laura}
-%\textcolor{red}{@??: Vielleicht möchtest du die Tabelle einfach übernehmen und nur die Daten des PCs ändern?}\\
 
 \begin{table}
 	\centering
 	\begin{tabular}{|l|l|}
 		\hline
 		\Absatzbox{}
-		\textbf{CGPC6}& \textbf{Beschreibung} \\
+		\textbf{\textcolor{red}{NAME?}}& \textbf{Description} \\
 		\hline
-		Prozessor & Intel Core i7 6700 CPU @ $4\times3.4-4.0\,$GHz \\
+		Processor & \textcolor{red}{??} \\
 		\hline
-		Arbeitsspeicher & $16\,$GB \\
+		RAM & \textcolor{red}{??}  \\
  		\hline 
-		Grafikkarte & NVIDIA GeForce GTX 980\\
+		Graphic Card & \textcolor{red}{??} \\
 		\hline
-		Betriebssystem & Windows 10 Education 64 bit \\
-		\hline
-		Schnittstellen & $2\times$ USB 3.0, $5\times$ USB 2.0, $1\times $ HDMI\\
+		Operating System & \textcolor{red}{??}  \\
 		\hline
 	\end{tabular}
-	\caption[Übersicht technische Daten des Computers für \emph{Unity}-Simulation]{Übersicht der technischen Daten des Computers für die \emph{Unity}-Simulation.}
-	\label{tab:Computer}
+	\caption[Extract from the Data Sheet of the \textcolor{red}{NAME?}]{Extract from the Data Sheet of the \textcolor{red}{NAME?}}.
+	\label{tab:Computer1}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		\Absatzbox{}
+		\textbf{Acer Aspire 5820TG}& \textbf{Description} \\
+		\hline
+		Processor & Intel Core i3 CPU @ $2.40\,$GHz \\
+		\hline
+		RAM & $4\,$GB \\
+ 		\hline 
+		Graphic Card 1 & AMD Mobilty Radeon HD 5000 Series\\
+		\hline
+		Graphic Card 2 & Intel(R) HD Graphics\\
+		\hline
+		Operating System & Windows 10 Education 64 bit \\
+		\hline
+	\end{tabular}
+	\caption[Extract from the Data Sheet of the Acer Aspire 5820TG Notebook.]{Extract from the Data Sheet of the Acer Aspire 5820TG Notebook.}
+	\label{tab:Computer2}
 \end{table}
 
 
-
-
-\subsection{Software}
+\subsection{Software} \label{sec:Software}
+\todo[inline, color=yellow]{Laura}
+In order to develop the \textit{Interactive Lighting Detector} \textit{Qt} was used (compare section \ref{sec:qt}). To take advantage of already existing functionalities the \textit{OpenCV}-library, which is described in section \ref{sec:opencv}, was taken advantage of.
+\subsubsection{QT} \label{sec:qt}
 \todo[inline, color=red]{Laura}
 
+\subsubsection{OpenCV} \label{sec:opencv}
+\todo[inline, color=red]{Laura}
+The \textit{Open Source Computer Vision} (OpenCV) is an open source library for image- and video processing, which is among others available in the programming language \textit{C}$++$. It has been introduced ten years ago and is developed by various programmers since then. This library offers the most common algorithms, as well as current developments in image processing \cite{article:OpenCV}.\\
+\textcolor{red}{Für dieses System ist vor allem das Modul \texttt{calib3d}~\cite{website:Calib3dDoc} und das extra Modul \texttt{aruco}~\cite{website:ArucoDoc} verwendet. Das erste Modul \texttt{calib3d}  bietet alle notwendigen Funktionen zur Erstellung, Verwendung und Weiterverarbeitung von intrinsischen und extrinsischen Kamerakalibrierungen an (vgl. Abschnitt~\ref{sec:calib}). Während das Zweite alle benötigten Ressourcen und Funktionalitäten zum Tracking von \textit{ArUco} Markern zur Verfügung stellt (vgl. Abschnitt~\ref{sec:aruco}).}
 
+
+
+
+
+
+\subsection{Testimages} \label{sec:testimages}
+\todo[inline, color=red]{Laura}
+\subsubsection{First Batch} \label{sec:testimagesfirst}
+\todo[inline, color=red]{Laura}
+\begin{figure}[H] 
+	\center 
+	\includegraphics[width=12cm]{Images/batch1.jpg}			
+	\caption[Bildunterschrift]{Bildunterschrift.}
+	\label{fig:batch1}
+\end{figure}
+
+\subsubsection{Second Batch} \label{sec:testimagessecond}
+\todo[inline, color=red]{Laura}
+\begin{figure}[H] 
+	\center 
+	\includegraphics[width=12cm]{Images/batch2.jpg}			
+	\caption[Bildunterschrift]{Bildunterschrift.}
+	\label{fig:batch2}
+\end{figure}
 
 \newpage
