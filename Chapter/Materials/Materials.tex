@@ -1,6 +1,6 @@
 \section{Materials}\label{sec:Materials}
 \todo[inline, color=yellow]{Laura}
-The following sections describe the resources and tools required for the completion of the project. \\ Furthermore, the test images are presented in chapter \ref{sec:testimages}.
+The following sections describe the resources and tools required for the completion of the project. Furthermore, the test images are presented in chapter \ref{sec:testimages}.
 
 
 \subsection{Hardware}\label{sec:Hardware}
@@ -54,17 +54,21 @@ During the implementation phase, the application was run on two computers, which
 \subsection{Software} \label{sec:Software}
 \todo[inline, color=yellow]{Laura}
 In order to develop the \textit{Interactive Lighting Detector} \textit{Qt} was used (compare section \ref{sec:qt}). To take advantage of already existing functionalities the \textit{OpenCV}-library, which is described in section \ref{sec:opencv}, was taken advantage of.
+
+
 \subsubsection{QT} \label{sec:qt}
-\todo[inline, color=red]{Laura}
+\todo[inline, color=yellow]{Laura}
+The \textit{QT Creator} was invented by \textit{The Qt Company}. It is an integrated software development environment in the programming language C++. More functionality can be added by using the Qt project's library, which is called \textit{Qt}.
+As a cross-platform tool, the \textit{QT Creator} can be used on all common operating systems \cite{QTCreator}. \\ Besides extensive database functions and XML-support the software can build graphic user interfaces (GUI).\\
+For this project the algorithm was transcribed in source code using the \textit{Qt Creator} and the GUI was designed in the \textit{Qt Designer} \cite{website:QtDesigner}.
+
+
+
 
 \subsubsection{OpenCV} \label{sec:opencv}
-\todo[inline, color=red]{Laura}
+\todo[inline, color=yellow]{Laura}
 The \textit{Open Source Computer Vision} (OpenCV) is an open source library for image- and video processing, which is among others available in the programming language \textit{C}$++$. It has been introduced ten years ago and is developed by various programmers since then. This library offers the most common algorithms, as well as current developments in image processing \cite{article:OpenCV}.\\
-\textcolor{red}{Für dieses System ist vor allem das Modul \texttt{calib3d}~\cite{website:Calib3dDoc} und das extra Modul \texttt{aruco}~\cite{website:ArucoDoc} verwendet. Das erste Modul \texttt{calib3d}  bietet alle notwendigen Funktionen zur Erstellung, Verwendung und Weiterverarbeitung von intrinsischen und extrinsischen Kamerakalibrierungen an (vgl. Abschnitt~\ref{sec:calib}). Während das Zweite alle benötigten Ressourcen und Funktionalitäten zum Tracking von \textit{ArUco} Markern zur Verfügung stellt (vgl. Abschnitt~\ref{sec:aruco}).}
-
-
-
-
+On the case of the implementation of the \textit{Light Detector} the library was mainly used for the detecting of the contours (compare section~\ref{sec:contours}) and solving the minimization problem (compare section~\ref{sec:approaches}) introduced by Johnson and Farid~\cite{Johnson}.
 
 
 \subsection{Testimages} \label{sec:testimages}
@@ -73,10 +77,10 @@ Due to the assumption that the objects shown on the test images described in sec
 
 
 \subsubsection{First Batch} \label{sec:testimagesfirst}
+\todo[inline, color=yellow]{Laura}
+Four examples of the first batch of test images are shown on figure \ref{fig:batch1}. Next to the mandatory sundial there are different objects depicted, like a helmet, a handbag, a bucket or a hot-water bottle. Those objects differ in their surface texture, as well as their size. They are shot from different angles to produce different light directions. it is necessary that the objects are not trimmed at the boarders of the image, because the algorithm requires a full contour of the selected object.
 
-For examples of the first batch of test images are shown on figure \ref{fig:batch1}. Next to the mandatory sundial there are different objects depicted.
 
-\todo[inline, color=red]{Laura}
 \begin{figure}[H] 
 	\center 
 	\includegraphics[width=12cm]{Images/batch1.jpg}			
@@ -85,9 +89,9 @@ For examples of the first batch of test images are shown on figure \ref{fig:batc
 \end{figure}
 
 \subsubsection{Second Batch} \label{sec:testimagessecond}
+\todo[inline, color=yellow]{Laura}
+In contrast to the first batch, the test images described in this section show easier objects with a round surface. As depicted in figure \ref{fig:batch2} all images show the madatory sundial and one or two table tennis balls in yellow and pink, which have a matt texture. For the actual algorithm of the \textit{Light Detector} only one of this balls is taken into consideration (compare section~\ref{sec:System}). Properties like size of the object, the camera angle and the lighting direction differs in each image.
 
-
-\todo[inline, color=red]{Laura}
 \begin{figure}[H] 
 	\center 
 	\includegraphics[width=12cm]{Images/batch2.jpg}			
