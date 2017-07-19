@@ -5,7 +5,8 @@ To give the customer an all-encompassing idea about the \textit{Interaction Lab}
 Before starting the actual project it is wise to make some mindful project plans in order to organize the project. First of all a catalogue of requirements and specifications (compare section~\ref{sec:PMcatalogue}) was written to formulate all important basic information of the project. \\
 The project structure plan, which is presented in section~\ref{sec:StructurePlan}, serves to arrange the work packages of the project in a sorted way. The relating milestone description can found in section~\ref{sec:Milestones}. \\
 For staying in time while the implementation phase, a time exposure is required (compare section~\ref{sec:timeExposure}).\\
-A list with all early detectable risks can be found in the table in section~\ref{sec:risks}.
+A list with all early detectable risks can be found in the table in section~\ref{sec:risks}.\\
+In section~\ref{sec:pmCon} a final resume about the changes during the actual realisation of the project is given. 
 
 
 \subsection{Project Proposal}\label{sec:ProjectProposal}
@@ -54,13 +55,13 @@ Furthermore, a sun clock is placed in each image to display the current lighting
 
 \underline{Calculation and Validation of lighting detection vectors }
 
-The Method of the image forensic tool to calculate and validate lighting detection vectors of objects in an image is given by the publication of Johnson [1]. Johnson offers an algorithm that calculates the lighting direction of infinite light sources by minimizing several samples of direction vectors along a contour segment of an object. Each sample is computed by extracting and minimizing features from the inner and nearby neighborhood of a contour patch. Every required minimization is computed by the least square method of the Dlib C++ library.
+The Method of the image forensic tool to calculate and validate lighting detection vectors of objects in an image is given by the publication of Johnson \cite{Johnson}. Johnson offers an algorithm that calculates the lighting direction of infinite light sources by minimizing several samples of direction vectors along a contour segment of an object. Each sample is computed by extracting and minimizing features from the inner and nearby neighborhood of a contour patch. Every required minimization is computed by the least square method of the Dlib C++ library.
 After a successful computation of the vectors the method computes angles of all calculated vectors and compare them with each other. If the difference between them is off a predefined threshold, the object has probably been retouched into the image. \\
 
 
 \underline{Interactive contour detection tool} 
 
-The interactive Live-Wire tool [2] is going to be realized to compute the required surface contour segments of the objects. This tool serves a segmentation algorithm which is initialized and controlled by seed points. Every seed point is set by the user with the mouse cursor and a cost minimisation of local features computes the optimal path between the last two seed points. These required features are extracted with OpenCV functions and minimised with the Dlib C++ library. Furthermore, all specified seed-points and resulting contour segments between them are previewed in the GUI. \\
+The interactive Live-Wire tool \cite{BARRETT1997331} is going to be realized to compute the required surface contour segments of the objects. This tool serves a segmentation algorithm which is initialized and controlled by seed points. Every seed point is set by the user with the mouse cursor and a cost minimisation of local features computes the optimal path between the last two seed points. These required features are extracted with OpenCV functions and minimised with the Dlib C++ library. Furthermore, all specified seed-points and resulting contour segments between them are previewed in the GUI. \\
 
 
 \underline{Graphic User Interface (GUI)} 
@@ -108,6 +109,10 @@ and a second prototype on the 9th June 2017. The final version of the Interactiv
 	\center 
 	\includegraphics[scale = 0.7]{Images/risks.pdf}			
 \end{figure}
+
+\subsection{Final Conclusion Projectmanagement} \label{sec:pmCon}
+% live wire wurde nicht umgesetzte
+%funktioniert nicht, aber dazu mehr in der Conclusion
 
 
 
