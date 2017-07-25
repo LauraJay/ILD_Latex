@@ -1,9 +1,9 @@
 \section{Project Management} \label{sec:pm}
 \todo[inline, color=yellow]{Laura}
-In this section the planning and the management of the \textit{Lighting Lab} is described. As there were only two persons involved this project the following part is going to be a bit more compressed than the reader might expected it.\\
-To give the customer an all-encompassing idea about the \textit{Interaction Lab} a project proposal was handed in, which is written in German. It is divided in two sections. First of all a motivation is given and afterwards the exercise, which should be implemented is determined. It is translated into English and can be found in section~{sec:ProjectProposal}. \\ 
+In this section the planning and the management of the \textit{Interactive Lighting Lab} is described. As there were only two persons involved in this project the following part is going to be a bit more compressed than the reader might expected it.\\
+To give the customer an all-encompassing idea about the \textit{Interactive Lighting Lab} a project proposal was handed in, which is written in German. It is divided in two sections. First of all a motivation is given and afterwards the exercise, which should be implemented is determined. It is translated into English and can be found in section~\ref{sec:ProjectProposal}. \\ 
 Before starting the actual project it is wise to make some mindful project plans in order to organize the project. First of all a catalogue of requirements and specifications (compare section~\ref{sec:PMcatalogue}) was written to formulate all important basic information of the project. \\
-The project structure plan, which is presented in section~\ref{sec:StructurePlan}, serves to arrange the work packages of the project in a sorted way. The relating milestone description can found in section~\ref{sec:Milestones}. \\
+The project structure plan, which is presented in section~\ref{sec:StructurePlan}, serves to arrange the work packages of the project in a sorted way. The relating milestone description can be found in section~\ref{sec:Milestones}. \\
 For staying in time while the implementation phase, a time exposure is required (compare section~\ref{sec:timeExposure}).\\
 A list with all early detectable risks can be found in the table in section~\ref{sec:risks}.\\
 In section~\ref{sec:pmCon} a final resume about the changes during the actual realisation of the project is given. 
@@ -13,15 +13,15 @@ In section~\ref{sec:pmCon} a final resume about the changes during the actual re
 \todo[inline, color=yellow]{Laura}
 
 \textbf{Motivation} \\
-Due to progressive changes in image processing programs and high-resolution images, the manipulation of digital images is became easier. A common form of manipulation is the so-called "\textit{image splicing}". Therefore image regions of at least two images where combined to a new one. The transitions between the individual image parts can get invisible for the user by using accurate and user-friendly image processing tools.
-According to \cite{Hsu2006DetectingIS} there is is still no algorithm, which makes images completely forgery-proof by adding watermarks to it. There is put much effort in the integrity of images and the recognition of manipulated image parts, despite the lack of prior knowledge of the image content. This should be improved by the \textit{Interaction Lab}. An algorithm should be established, which proofs the consistence in light directions on various surfaces presented on an image. The light vectors will be conveniently estimated to give an assertion on whether the image is manipulated or not.\\
+Due to progressive changes in image processing programs and high-resolution images, the manipulation of digital images has became easier. A common form of manipulation is the so-called "\textit{image splicing}". Therefore image regions of at least two images where combined to a new one. The transitions between the individual image parts can get invisible for the user by using accurate and user-friendly image processing tools.
+According to \cite{Hsu2006DetectingIS} there is still no algorithm, which makes images completely forgery-proof by adding watermarks to it. There is put much effort in the integrity of images and the recognition of manipulated image parts, despite the lack of prior knowledge of the image content. This should be improved by the \textit{Interactive Lighting Lab}. An algorithm should be established, which proofs the consistence in light directions on various surfaces presented on an image. The light vectors will be conveniently estimated to give an assertion on whether the image is manipulated or not.\\
 
 \textbf{Work Steps} \\
 Until now there is no implementation given by \textit{OpenCV}, which estimates the light vector of an infinite light source on one surface and compares it with the according vector of another surface in the same image. An approach in the programming language \textit{C++} should be implemented using the assumptions of Johnson and Farid \cite{Johnson} to compute, analyse and visualize the light vectors. \\The following work stages are necessary: 
 
 \begin{itemize}
 \item Creation of test images with an infinite light source, e.g. in nature on a sunny day 
-\item Implementation of a GUI for visualize the approach
+\item Implementation of a GUI for the visualisation of the approach
 \item Implementation of the algorithm of Johnson and Farid \cite{Johnson}
 \item Optional: The approach might be amended by also taking a local (not infinite) light source into consideration \cite{Johnson}
 \end{itemize}
@@ -84,21 +84,21 @@ and a second prototype on the 9th June 2017. The final version of the Interactiv
 \todo[inline, color=yellow]{Laura}
 \begin{figure}[H] 
 	\center 
-	\includegraphics[scale = 0.8]{Images/Project Structure Plan.pdf}		
+	\includegraphics[scale = 0.9]{Images/Project Structure Plan.jpg}		
 \end{figure}
 
 \subsection{Milestones} \label{sec:Milestones}
 \todo[inline, color=yellow]{Laura}
 \begin{figure}[H] 
 	\center 
-	\includegraphics[scale = 0.8]{Images/milestones.pdf}		
+	\includegraphics[scale = 0.9]{Images/milestones.jpg}		
 \end{figure}
 
 \subsection{Time Exposure} \label{sec:timeExposure}
 \todo[inline, color=yellow]{Laura}
 \begin{figure}[H] 
 	\center 
-	\includegraphics[scale = 0.8]{Images/Project Description and Time Exposure.pdf}		
+	\includegraphics[scale = 0.9]{Images/Project Description and Time Exposure.jpg}		
 \end{figure}
 
 
@@ -107,13 +107,14 @@ and a second prototype on the 9th June 2017. The final version of the Interactiv
 \todo[inline, color=yellow]{Laura}
 \begin{figure}[H] 
 	\center 
-	\includegraphics[scale = 0.7]{Images/risks.pdf}			
+	\includegraphics[scale = 0.7]{Images/risks.jpg}			
 \end{figure}
 
-\subsection{Final Conclusion Projectmanagement} \label{sec:pmCon}
-% live wire wurde nicht umgesetzte
-%funktioniert nicht, aber dazu mehr in der Conclusion
-
+\subsection{Final Conclusion on the Projecprogress} \label{sec:pmCon}
+\todo[inline, color=yellow]{Laura}
+In general the project progress went well and most of the project goals were achieved. Therefore the \textit{Interactive Lighting Detector} is a complete working application. The final system contains a GUI, in which the user can select parts of the contour (compare section~\ref{sec:contours}). \\
+However some of the project goals were too ambitious for the resources capacity in the scheduled time window. The planned \textit{Live Wire} algorithm was replaced by simply taking a binary mask image of the actual image and detecting the contour as described in section~\ref{sec:findContours}. In addition to that it is only possible to calculate the light vector for one object in a scene. It was planned to detect light vectors for several objects to give the opportunity of comparing the directions to each other. But nevertheless, the calculated light vector can be compared to the shadow created by the sundial. \\
+The determination of the light vectors is not working as trustworthy. Reasons for that are discussed in evaluation (compare section~\ref{sec:Evaluation}) and summed up in the conclusion (compare section~\ref{sec:Conclusion}).
 
 
 
