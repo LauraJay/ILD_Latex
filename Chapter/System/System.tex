@@ -4,14 +4,13 @@ This chapter describes the contour searching method and different approaches to 
 
 \subsection{Contours}\label{sec:contours}
 \todo[inline, color=yellow]{Vera}
-To estimate the light direction of an object in a digital image, it is firstly needed to locate the object of interest and get any shape informations. All informations are described by the contour which is forced to be perfectly even to guarantee a sucessful light direction estimation. The most important required informations are all pixel coordinates along the outer bound of the object in an ordered way. 
+To estimate the light direction of an object in a digital image, it is firstly needed to locate the object of interest and get its shape informations. All informations are described by the contour which is forced to be perfectly even to guarantee a successful light direction estimation. The most important required informations are all pixel coordinates along the outer bound of the object in an ordered way. 
 
-Beside a correctly calculation, an application with a good usability is preferred as well. 
-An pre implemented interactive segmentation \cite{website:LiveWire} was integrated into the application to generate the affordable contours with manual constraints that are defined by the user. This method is called \textit{Live-Wire}~\cite{BARRETT1997331} and based on a maximum flow problem. However, several test showed that this extension calculates noisy and fault contours as well as lacks of a robust use control. The main problem was that the generated contour seems to follow the valley between two edges of an RGB image and snap to the most significant edge in a wide neighbourhood. Even more constraints set by the user did not result in adequate and useful shapes. 
+Beside a correctly localisation, an application with a good usability is preferred as well. An pre implemented interactive segmentation \cite{website:LiveWire} was integrated into the application to generate the affordable contours with manual constraints that are defined by the user. This method is called \textit{Live-Wire}~\cite{BARRETT1997331} and based on a maximum flow problem. However, several test showed that this extension calculates noisy and fault contours as well as lacks of a robust use control. The main problem was that the generated contour seems to follow the valley between two edges of an RGB image and snap to the most significant edge in a wide neighbourhood. Even more constraints set by the user did not result in adequate and useful shapes. 
 
-According to this bad results, the team decided to extract the contours from perfectly even mask images of the objects of interest like in in Figure \ref{fig:batch1mask}. These images are made in manually in \textit{Adobe Photoshop CS 6} with the pen tool that offers perfectly round and even Bezier Curves. All created masks are shrink about almost two pixels to ensure that only pixel informations of the actual object are used for further proceedings and none from the background. 
+According to this bad results, the team decided to extract the contours from perfectly even mask images of the objects of interest like in in Figure \ref{fig:batch1mask}. These images are made manually in \textit{Adobe Photoshop CS 6} with the pen tool that offers perfectly round and even Bezier curves. All created masks are shrink about almost two pixels to ensure that only pixel informations of the actual object are used for further proceedings and none from the background. 
 
-If the file name of a mask image of interest is the same as the belonging RGB image with the extension \texttt{\_mask.jpg}, it will be loaded automatically into the application at the same time when the belonging RGB image is selected. This mask data will be used for all further contour calculations.
+If the file name of a mask image is the same as the one belonging to the selected RGB image with the extension \texttt{\_mask.jpg}, it will be loaded automatically into the application at the same time when the belonging RGB image is opened. This mask data will be used for all further contour calculations.
 
 \begin{figure} [H]
 	\center 
@@ -19,21 +18,16 @@ If the file name of a mask image of interest is the same as the belonging RGB im
 	\caption[Bildunterschrift]{Manual created mask images of the first batch.}
 	\label{fig:batch1mask}
 \end{figure}
-%\begin{figure}[H]
-%	\center 
-%	\includegraphics[width=12cm]{Images/batch2_mask.jpg}			
-%	\caption[Bildunterschrift]{Manual created mask images of the second batch.}
-%	\label{fig:batch2mask}
-%\end{figure}
+
 \subsubsection{Calculate Contours}\label{sec:findContours}
 \todo[inline, color=yellow]{Vera}
 
-Several \textit{OpenCV} functions are used to compute all required pixel coordinates along the outer object bound. In the beginning a common erosion filter with a filter size of three is applied to the mask image to eliminate small outliers and to shrink the mask to ensure that it is not located directly or outside the object bound. In the next step, a Canny filter with a filter size of five is used to extract the edges. Then the \textit{OpenCV} function \texttt{findContours()} calculates the vector representations of the binary canny image with the border following algorithm of Suzuki et Al.~\cite{SUZUKI198532}. All results are not optimized by any approximations because otherwise important coordinate data will be lost. The resulting contours will be printed into the preview of the GUI to allow the user a selection of the wanted sub-contour to run the light direction estimation.
+Several \textit{OpenCV} functions are used to compute all required pixel coordinates along the outer object bound. In the beginning a common erosion filter with a filter size of three is applied to the mask image to eliminate small outliers and to shrink the mask to ensure that it is not located directly or outside the object bound. In the next step, a Canny filter with a filter size of five is used to extract the edges. Then the \textit{OpenCV} function \texttt{findContours()} calculates the vector representations of the binary canny image with the border following algorithm of Suzuki et Al.~\cite{SUZUKI198532}. All results are not optimized by any approximations because otherwise important coordinate data will be lost. The resulting contours will be printed into the preview of the GUI to allow the user a selection of a suitable sub-contour to feed the light direction estimation.
 
 \subsection{Generate Subcontours}\label{sec:subcontours}
 \todo[inline, color=yellow]{Vera}
 
-As mentioned, the user is forced to select an adequate part of the contour to contain the further calculations. He can do so in the GUI with a simple rectangle selection in the preview. This selection can be renewed, if affordable, and saved. After the storage all points of the contour which are within the rectangle are stored and sorted in a so called  sub-contour. At this point, the sort is needed because all contour points are stored like a ring buffer that starts at the highest point and then follows counter clock wise the boundary. Thus, it has to be reordered to ensure an open and gapless sub-contour, if the selection includes the top of the complete contour.
+As mentioned, the user is forced to select an adequate part of the contour to contain the further calculations. He can do so in the GUI with a simple rectangle selection in the preview. This selection can be renewed, if affordable, and saved. After the storage of all contour points within the rectangle, they are stored and sorted in a so called  sub-contour. At this point, the sort is needed because all contour points are stored like a ring buffer that starts at the highest point and then follows counter clock wise the boundary. Thus, it has to be reordered to ensure an open and gapless sub-contour, if the selection includes the top of the complete contour.
 
 After this process, we have an sub-contour that includes all important edge points along the boundary but it still lacks of all pixel coordinates along this part of the boundary.
 This circumstance can be solved by making a binary image and print the required sub-contour into it with a line thickness of one pixel. Then a \textit{OpenCV} \texttt{LineIterator} is applied to this image. It is treated as versatile implementation of the Bresenham algorithm~\cite{5388473} and allows the notice and storage of every required coordinate. Now, these coordinates can be used for the following approaches of the light direction estimation in a single digital image.
@@ -41,14 +35,14 @@ This circumstance can be solved by making a binary image and print the required 
 
 \subsection{Illumination Model}\label{sec:lightingmodel}
 \todo[inline, color=yellow]{Vera}
-To understand the following approaches, it is useful to give a short introduction to the definition of an illumination model. One of the most acknowledged illumination model is the Blinn model~\cite{Blinn:1977}(see Equation \ref{equ:Blinn}) which defines a basic illumination in a 3D space. This illumination is a sum of ambient $a$, diffuse $d$ and specular $sp$ light parts where $\vec{n}$ is the surface normal, $\vec{l}$ is the light direction vector and $\vec{h}$ is the direction of the maximum highlights. The $p$ are variables that are related to the proportions of each reflection type which are part of the sum and $s$ is the amount of the specular reflection.
+To understand the following approaches, it is useful to give a short introduction to the definition of an illumination model. One of the most acknowledged illumination model is the Blinn model~\cite{Blinn:1977}(see Equation \ref{equ:Blinn}) which defines a basic illumination in a three dimensional space. This illumination is a sum of ambient $a$, diffuse $d$ and specular $sp$ light parts where $\vec{n}$ is the surface normal, $\vec{l}$ is the light direction vector and $\vec{h}$ is the direction of the maximum highlights. The $p$ are variables that are related to the proportions of each reflection type which are part of the sum and $s$ is the amount of the specular reflection.
 
 \begin{equation}
 \label{equ:Blinn}
 I(x,y,z) = (\vec{n}\cdot \vec{l})*p_d + (\vec{n}\cdot\vec{h})^s*p_s + p_a = d + sp + a
 \end{equation} 
 
-Due to the number of unknown variables and vectors, the Blinn model is too complex to calculate the 3-vector $\vec{l}$ with standard approaches like the least square method. Hence, some assumptions to simplify the mode had to be made~\cite{Johnson}. The first assumption is to state the the current surface reflects light isotropically. This surface has a constant reflectance value $r$ and is illuminated by a faraway infinitive light source. Finally, the angle between $\vec{n}$ and  $\vec{l}$ is in the range of $0^\circ $ and $90^\circ$. All previous assumptions lead to the simplified light model of equation \ref{equ:simpleLightmodel}.
+Due to the high number of unknown variables and vectors, the Blinn model is too complex to calculate the 3-vector $\vec{l}$ with standard approaches like the least square method. Hence, some assumptions to simplify the mode had to be made~\cite{Johnson}. The first assumption is to state the current surface reflects light isotropically. This surface has a constant reflectance value $r$ and is illuminated by a faraway infinitive light source. Finally, the angle between $\vec{n}$ and  $\vec{l}$ is in the range of $0^\circ $ and $90^\circ$. All previous assumptions lead to the simplified light model of equation \ref{equ:simpleLightmodel}.
 
 \begin{equation}
 \label{equ:simpleLightmodel}
