@@ -85,7 +85,7 @@ For the second and the third approach, the light vectors are summed up in patche
 
 \subsubsection{1. Approach: One Lightvector}\label{sec:appOne}
 \todo[inline, color=yellow]{Laura}
-The first approach tries to simplify the two dimensional case by solving equation \ref{equ:firstApp} and getting one finale light vector per contour of an object plus the ambient light term. The Matrix $M$ can be found in Johnsons and Farids paper \cite{Johnson} in equation (6) and $p$ denotes the number of points on a contour with the same assumed reflectance. All other variables are explained in section~\ref{sec:approaches}. Thereby the reflectance along the entire contour is thought of as constant. 
+The first approach tries to simplify the two dimensional case by solving equation \ref{equ:firstApp} and getting one final light vector per contour of an object plus the ambient light term. The Matrix $M$ can be found in Johnsons and Farids paper \cite{Johnson} in equation (6) and $p$ denotes the number of points on a contour with the same assumed reflectance. All other variables are explained in section~\ref{sec:approaches}. Thereby the reflectance along the entire contour is thought of as constant. 
 
 \begin{equation}
 \label{equ:firstApp}
@@ -144,9 +144,9 @@ As stated in section~\ref{sec:appOne} equation~\ref{equ:secondApp} is solved usi
 
 
 \subsubsection{3. Approach: Lightvector with highest Intensity}\label{sec:appThree}
-\todo[inline, color=red]{Laura}
+\todo[inline, color=yellow]{Laura}
 This last approach uses the same basic idea as the second one described in section \ref{equ:secondApp}. It is also based on dividing the surface normals $\vec{N}$ into patches and solving equation~\ref{equ:secondApp} using \textit{Singular Value Decomposition}. Afterwards there is no averaging done, but the vector $\vec{L}$ belonging to the patch with the highest intensities is taken as the final light vector. \\
-This idea is not described in the paper of Johnson and Farid~\cite{Johnson}. It was a try make the results of the \textit{Lighting Detector} more trustworthy. \\
+This idea is not described in the paper of Johnson and Farid~\cite{Johnson}. It was a try to make the results of the \textit{Interactive Lighting Detector} more trustworthy. \\
 This options can be activated in our script \textit{mainwindow.cpp} by setting \textit{usePatches} to \textit{true} and \textit{useHighestIntensity} to \textit{true}.
 
 \newpage
