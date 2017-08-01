@@ -1,20 +1,18 @@
 \section{State of the Art} \label{sec:StateOfTheArt}
-\todo[inline, color=yellow]{Laura}
-In the following sections the basic scientific knowledge to understand the \textit{Interactive Lighting Detector}, whose functionality is explained in section~\ref{sec:System}, is presented.\\
-A general introduction to image forensic is given in section~\ref{sec:imageForensic}.
-Furthermore, other approaches using light vectors, which are detected using similar assumptions to \cite{Johnson}, are shortly presented in section~\ref{sec:otherApproaches}.
+In the following Sections the basic scientific knowledge to understand the \textit{Interactive Lighting Detector}, whose functionality is explained in Section~\ref{sec:System}, is presented.\\
+A general introduction to image forensic is given in SectionFir\ref{sec:imageForensic}.
+Furthermore, other approaches using light vectors, which are detected using similar assumptions to \cite{Johnson}, are shortly presented in Section~\ref{sec:otherApproaches}.
 
 
 \subsection{Image Forensic}\label{sec:imageForensic}
-\todo[inline, color=yellow]{Laura}
-In \cite{4284575} the authors claim image forensic to become more important over the years. Furthermore, they divide the field in two approaches. First of all image forensic can be used to identify the recording device of an image. This can, inter alia, be done by taking sensor imperfections, like for example pixel defects, or the lens aberration of the camera into consideration. \\
-The second field of interest is the detection of image forgery \cite{4806202}. Besides of using the camera response function there can be other details in the image which can be informative whether an image is real or a forgery. For example the light situation in an image must be consistent. This can be proofed by calculating light vectors in various points in the image. The \textit{Interactive Light Detector} is using exactly this method (compare section~\ref{sec:System}). Related approaches are described briefly in section~\ref{sec:otherApproaches}.
+
+In \cite{4284575} the authors claim image forensic to become more important over the years. Furthermore, they divide the field in two approaches. First of all, image forensic can be used to identify the recording device of an image. This can, inter alia, be done by taking sensor imperfections like pixel defects or the lens aberration into consideration. \\
+The second field of interest is the detection of image forgery \cite{4806202}. Beside using the camera response function, there can be other details in the image which are informative to differ between an original or forgery. For example, the light situation in an image must be consistent. This can be proofed by calculating light vectors at various points in the image. The \textit{Interactive Light Detector} is using exactly this method (compare Section~\ref{sec:System}). Related approaches are described briefly in Section~\ref{sec:otherApproaches}.
 
 
 \subsection{Related Approaches} \label{sec:otherApproaches}
-\todo[inline, color=yellow]{Laura}
-The \textit{Interactive Lighting Detector} was implemented according to the paper by Johnson and Farid \cite{Johnson}. The foundation of their assumptions were set in 2001 by the publication of Nillius and Eklundh on an "\textit{automatic estimation of the projected light source direction}" \cite{990650}. Whereas the earlier theory is taking three dimensional surface normals to determine the light vectors pointing into the direction of the light source, the newer approach by Johnson and Farid uses only one image, and therefore two dimensional surface normals, to achieve the same goal. \\
+The \textit{Interactive Lighting Detector} was implemented according to the paper by Johnson and Farid \cite{Johnson}. The foundation of their assumptions were set in 2001 by the publication of Nillius and Eklundh on an "\textit{automatic estimation of the projected light source direction}" \cite{990650}. Whereas the earlier theory is taking three dimensional surface normals to determine the light vectors pointing into the direction of the light source, the newer approach by Johnson and Farid uses only one image. Therefore, two dimensional surface normals are used to achieve the same goal. \\
 An other related approach, which is also presented by Johnson and Farid, estimates the three dimensional light direction from the light's reflections in the eyes of human. Therefore they determine the light vector by using the surface normal and the view direction of the person \cite{johnson06specular}.
-
+\\ Further research did not offer other approaches that uses single images and a two dimensional vector space. Most of them ask for several images from different view points as well and thus can not be compared with the approach of Johnston.
 
 \newpage

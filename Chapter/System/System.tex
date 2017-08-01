@@ -44,12 +44,10 @@ I(x,y,z) = r(\vec{n}\cdot \vec{l}) + a
 \end{equation} 
 
 \subsection{Different Approaches}\label{sec:approaches}
-\todo[inline, color=yellow]{Laura}
-Because no reliable solution could be found, three different approaches were tried out. 
-All three approaches are based on the paper of Johnson and Farid \cite{Johnson}. 
-Whereas two of this approaches remained unchanged (compare section~\ref{sec:appOne} and \ref{sec:appTwo}), the last approach takes the assumptions of Johnson and Farid and expand them (compare section~\ref{sec:appThree}). \\
-In the following sections we do not have a three dimensional room, as all evaluations are made based on images. All of them have in common, that their assumptions are based on a infinite light source in a two dimensional image space.\\
-The basic idea behind the approach is described in section~\ref{equ:Blinn}. To differentiate the 2D case all parameters are written in upper letters. In 2D equation~\ref{equ:simpleLightmodel} is referred to as follows:
+Three different approaches were tried out because a reliable solution could not be found. All approaches are based on the paper of Johnson and Farid \cite{Johnson}. 
+Two of this approaches remained unchanged (compare Section~\ref{sec:appOne} and \ref{sec:appTwo}) but the last approach takes the assumptions of Johnson and Farid and expand them (compare Section~\ref{sec:appThree}). \\
+In the following sections, it has to noted that we do not have a three dimensional space like almost all other evaluations \textcolor{red}{besser: light direction estimations} that are based on images. All of them have in common that their assumptions are based on a infinite light source in a two dimensional image space. \textcolor{red}{Macht das Sinn? Müsste es nicht heißen: All realised approaches of Johnson are based...}\\
+The basic idea of the approach is a simplified light model that is described in Section~\ref{equ:Blinn}. To differentiate the 2D case all parameters are written in upper letters. In 2D Equation~\ref{equ:simpleLightmodel} is referred to as follows:
 
 \begin{equation}
 \label{equ:General}
@@ -58,18 +56,18 @@ I(x,y) = R(\vec{N}(x,y)\cdot \vec{L}) + A
 
 To standardise the explanations in the following sections a list of necessary variables is introduced: 
 \begin{itemize}
-\item $\vec{L}$: vector, which points in the direction of the light source 
-\item $\vec{N}(x,y)$: surface normal at the point (x,y) 
+\item $\vec{L} \in \mathbb{R}^2$: vector, which points in the direction of the light source 
+\item $\vec{N}(x,y)\in \mathbb{R}^2$: surface normal at the point (x,y) 
 \item $I(x,y)$: intensity at the point (x,y)
 \item $A$: constant ambient light term
 \item $R$: constant reflectance value
 \end{itemize}
 All equations in this section, as well as its subsections, are taken from \cite{Johnson}. \\
-For the second and the third approach, the light vectors are summed up in patches of size four. 
+For the second and the third approach, the light vectors are summed up in patches of a size of four pixel. 
 
 \subsubsection{1. Approach: One Lightvector}\label{sec:appOne}
-\todo[inline, color=yellow]{Laura}
-The first approach tries to simplify the two dimensional case by solving equation \ref{equ:firstApp} and getting one final light vector per contour of an object plus the ambient light term. The Matrix $M$ can be found in Johnsons and Farids paper \cite{Johnson} in equation (6) and $p$ denotes the number of points on a contour with the same assumed reflectance. All other variables are explained in section~\ref{sec:approaches}. Thereby the reflectance along the entire contour is thought of as constant. 
+
+The first approach tries to simplify the two dimensional case by solving Equation \ref{equ:firstApp} and getting one final light vector per sub-contour plus the ambient light term. The Matrix $M$ can be found in Johnsons and Farids paper \cite{Johnson} in Equation (6) and $p$ denotes the number of points on a contour with the same assumed reflectance. \textcolor{red}{Hier würde ich noch kurz erwähnen dass die Normalen in M enthalten sind.}All other variables are explained in Section~\ref{sec:approaches}. Thereby, the reflectance along the entire contour is thought as constantly. 
 
 \begin{equation}
 \label{equ:firstApp}
@@ -91,12 +89,12 @@ I(x_{p} , y_{p}) \\
  = \left\vert \left\vert  M\vec{v}-\vec{b}  \right\vert\right\vert^{2}
 \end{equation}
 
-This options can be activated in our script \textit{mainwindow.cpp} by setting \textit{usePatches} to \textit{false}. Equation~\ref{equ:firstApp} is than solved using \textit{Singular Value Decomposition}. Then the lightvector $\vec{L}$ is drawn onto the test image to visualize the result.  
+This options can be activated in our script \texttt{mainwindow.cpp} by setting the variable \texttt{usePatches} to \texttt{false}. Equation~\ref{equ:firstApp} is then solved by using the \textit{Singular Value Decomposition}. The resulting light vector $\vec{L}$ is drawn into the test image to visualize the result.  
 
 \subsubsection{2. Approach: Averaging Lightvectors}\label{sec:appTwo}
-\todo[inline, color=yellow]{Laura}
-For the second approach it is not only assumed, that the light source is infinite, but also that the reflection created by it is constant within each surface patch. The basic idea can be found in section 2.2.1 in the paper of Johnson and Farid \cite{Johnson}.\\
-It is assumed, that a minimization problem according to equation~\ref{equ:secondApp} needs to be solved. The Matrix $M$ can be found in \cite{Johnson} in equation (8). \\
+
+For the second approach, it is not only assumed that the light source is infinite, but also that the reflection created by it is constant within each surface patch. \textcolor{red}{Besser: For the second approach, it is additionally assumed that the reflections created by the infinitive light source are constant within each surface patch.}A more detailed description of this approach can be found in section 2.2.1 in the paper of Johnson and Farid \cite{Johnson}.\\
+It is assumed, that a minimization problem according to Equation~\ref{equ:secondApp} needs to be solved. The related Matrix $M$ can be found in \cite{Johnson} in Equation (8). \\
 
 \begin{equation}
 \label{equ:secondApp}
@@ -123,29 +121,29 @@ I(x^{n}_{p} , y^{n}_{p}) \\
  \right\vert\right\vert^{2}
  = \left\vert \left\vert  M\vec{v}-\vec{b}  \right\vert\right\vert^{2}
 \end{equation}
-This options can be activated in our script \textit{mainwindow.cpp} by setting \textit{usePatches} to \textit{true} and \textit{useHighestIntensity} to \textit{false}.
-As stated in section~\ref{sec:appOne} equation~\ref{equ:secondApp} is solved using \textit{Singular Value Decomposition} as well. This leads to calculating one light vector per patch. To get the final vector $\vec{L}$ all of this light vectors are averaged.
+This options can be activated in our script \texttt{mainwindow.cpp} by setting \texttt{usePatches} to \texttt{true} and \texttt{useHighestIntensity} to \texttt{false}.
+As stated in Section~\ref{sec:appOne}, Equation~\ref{equ:secondApp} is solved using \textit{Singular Value Decomposition} as well. This leads to calculating one light vector per patch. To get the final vector $\vec{L}$ all these light vectors are averaged.
 
 
-\subsubsection{3. Approach: Lightvector with highest Intensity}\label{sec:appThree}
-\todo[inline, color=yellow]{Laura}
-This last approach uses the same basic idea as the second one described in section \ref{equ:secondApp}. It is also based on dividing the surface normals $\vec{N}$ into patches and solving equation~\ref{equ:secondApp} using \textit{Singular Value Decomposition}. Afterwards there is no averaging done, but the vector $\vec{L}$ belonging to the patch with the highest intensities is taken as the final light vector. \\
-This idea is not described in the paper of Johnson and Farid~\cite{Johnson}. It was a try to make the results of the \textit{Interactive Lighting Detector} more trustworthy. \\
-This options can be activated in our script \textit{mainwindow.cpp} by setting \textit{usePatches} to \textit{true} and \textit{useHighestIntensity} to \textit{true}.
+\subsubsection{3. Approach: Lightvector with maximum Intensity}\label{sec:appThree}
+
+This last approach uses the same basic idea as the second one described in section \ref{equ:secondApp}. It is also based on dividing the surface normals $\vec{N}$ into patches and solving Equation~\ref{equ:secondApp} using \textit{Singular Value Decomposition}. Afterwards, there is no averaging done but the vector $\vec{L}$ belonging to the patch with the maximum intensity is taken as the final light vector. \\
+This idea is not described in the paper of Johnson and Farid~\cite{Johnson}. It was a try to make the results of the \textit{Interactive Lighting Detector} more trustworthy and reproducible. \\
+This options can be activated in our script \texttt{mainwindow.cpp} by setting \texttt{usePatches} to \texttt{true} and \texttt{useHighestIntensity} to \texttt{true}.
 
 
 \subsection{Graphic User Interface} \label{sec:GUI}
-\todo[inline, color=yellow]{Laura}
-As the \textit{Interactive Lighting Detector} is implemented as an half-automatic application, a GUI is needed to give the user the opportunity to make decisions. The GUI leads the user from loading an image to the final light vector result. Hereinafter an expiry is given. For reasons of space all corresponding screenshots can be found in the attachment (compare section~\ref{sec:Attachment}).  
+
+As the \textit{Interactive Lighting Detector} is implemented as an half-automatic application, a GUI is needed to give the user the opportunity to make decisions. The GUI leads the user from loading an image to the final results. Here, an expiry is given. For reasons of space all corresponding screenshots can be found in the attachment (compare Section~\ref{sec:Attachment}).  
 \begin{itemize}
-\item \textbf{loading an image:} If the user presses the button \textit{Load Image} he can chose an image from his hard disk, which has the file format JPEG or Tiff (compare figure~\ref{fig:Gui01}). In addition the mask image is then loaded in the background as described in section~\ref{sec:contours}.
-\item \textbf{contour detection:} Once an image is loaded, the \textit{Run Contour Detection}-button gets visible. 
+\item \textbf{loading an image:} If the user presses the button \textit{Load Image}, he can chose an image from his hard disk drive, which has the file format JPEG or Tiff (compare figure~\ref{fig:Gui01}). In addition, the mask image is then loaded in the background as described in Section~\ref{sec:contours}.
+\item \textbf{contour detection:} Once an image is loaded, the \textit{Run Contour Detection}-button gets visible. \textcolor{red}{Kann es sein das hier das anzeigen der Contour fehlt?}
 \item \textbf{sub contour:} As the algorithm does not need a closed contour, the user can select a subcontour by pressing the \textit{Select Part of Contour}-button and drawing a rectangle, including the part of the contour (marked in green) he wants to select (compare figure~\ref{fig:Gui02}). If he is dissatisfied with his selection he can renew it by pressing the \textit{Delete Selection}. Otherwise he can apply the selection by pressing the \textit{Save Selection}. 
-\item \textbf{calculating normals:} By clicking the \textit{Show Normals}-button the surface normals for the subcontour are determined and drawn in red (compare figure~\ref{fig:Gui03}.
-\item \textbf{calculating lightvectors:} The last step is to calculate the lightvectors by pressing the \textit{Show Lightvectors}-button. The final lightvector is then drawn in blue and if there is chosen to calculate the lightvectors for every single patch (compare section \ref{sec:approaches}), than all other lightvectors are drawn in white (compare figure~\ref{fig:Gui04}). 
+\item \textbf{calculating normals:} By clicking the \textit{Show Normals}-button the surface normals for the subcontour are determined and drawn in red (compare figure~\ref{fig:Gui03}).
+\item \textbf{calculating lightvectors:} The last step is to calculate the lightvectors by pressing the \textit{Show Lightvectors}-button. The final lightvector is then drawn in blue. If it is chosen to calculate the light vectors for every single patch (compare section \ref{sec:approaches}), than all other light vectors are drawn in white (compare figure~\ref{fig:Gui04}). 
 \end{itemize}
 
-To simplify the expiry the GUI can be refreshed by pressing the \textit{Restart}-button. In addition to that the application can be closed at any time. 
+To simplify the expiry the GUI can be refreshed by pressing the \textit{Restart}-button. In addition to that the application can be closed at any time \textcolor{red}{Wo?}. 
 
 
 \newpage
